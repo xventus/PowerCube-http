@@ -101,31 +101,16 @@ private:
                         // HTTP POST ssid value
                         if (p->name() == _cssid) {
                             _fs->writeItem(ItemFS::Data::ssid,p->value().c_str());
-
-                              
-                            String ssid = p->value().c_str();
-                            Serial.print("SSID set to: ");
-                            Serial.println(ssid);
                             
                         }
 
                         if (p->name() == _cpass) {
                             _fs->writeItem(ItemFS::Data::password, p->value().c_str());
-
-                               
-                            String ssid = p->value().c_str();
-                            Serial.print("PASSW set to: ");
-                            Serial.println(ssid);
                             
                         }
 
                         if (p->name() == _cservice) {
                             _fs->writeItem(ItemFS::Data::url, p->value().c_str());
-
-                             
-                            String ssid = p->value().c_str();
-                            Serial.print("SERVICE set to: ");
-                            Serial.println(ssid);
                             
                         }
                         
