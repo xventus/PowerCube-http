@@ -1,0 +1,19 @@
+
+// scale conversion to actual power to the PowerDice
+function scaleConversion(number, inMin, inMax, outMin, outMax) {
+    return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+}
+
+
+// Obtains the current available or consumed power from the solar power plant. 
+// Positive values mean production, negative values mean self-consumption. 
+var freePower = global.get('solar-power') || 0;
+
+// Conversion of current production/consumption in Watts on a scale of -10-0-10
+
+msg.payload = {
+         "power": Math.round(scaleConversion(freePower, -10000,10000,-10,10)),
+         "powerW": freePower
+}
+
+return msg;
