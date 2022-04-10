@@ -11,8 +11,6 @@
 
 #pragma once
 
-#include <M5Atom.h>
-
 #include <WiFi.h>
 #include <AsyncTCP.h>
 #include <ESPAsyncWebServer.h>

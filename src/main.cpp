@@ -2,15 +2,15 @@
  * @file main.cpp
  * @author Petr Vanek (petr@fotoventus.cz)
  * @brief Energy Dice - A simple indicator of the solar power plant status and free energy. As a server it uses NODE RED
- * @version 0.1
+ * @version 0.2 - without M5 framework
  * @date 2022-04-04
  * 
  * @copyright Copyright (c) 2022 Petr Vanek 
  * 
  */
 
-#include <M5Atom.h>
 #include <Arduino.h>
+#include "M5Atom.h"
 
 #include "dice.h"
 #include "dice_client.h"
@@ -19,6 +19,7 @@
 #include "configuration.h"
 #include "cfg_server.h"
 
+static const uint16_t  gButtonPin {39};
 
 /**
  * @brief set of global objects for running
@@ -76,7 +77,13 @@ void webConfig() {
  * 
  */
 void setup() {
-  M5.begin(true, false, true);  
+
+  pinMode(gButtonPin, INPUT_PULLUP);
+  Wire.begin(25, 21, 100000UL);
+
+  Serial.begin(115200);
+	Serial.flush();
+	delay(50);
   Serial.printf("startup\n"); 
   dice.init();
   dice.showWaitState();
@@ -111,11 +118,8 @@ void setup() {
  */
 void loop() {
 
-  // if configuration required
-  M5.update();
-  
   // The user presses a button to configure 
-  if (M5.Btn.wasPressed()) {
+  if (!digitalRead(gButtonPin)) {
      Serial.printf("button - user config\n");
      webConfig();
   }

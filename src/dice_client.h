@@ -12,7 +12,6 @@
 
 #pragma once
 
-#include <M5Atom.h>
 #include <Arduino.h>
 #include <WiFi.h>
 #include <WiFiMulti.h>

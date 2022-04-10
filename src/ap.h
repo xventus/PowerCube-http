@@ -11,7 +11,6 @@
 
 #pragma once
 
-#include <M5Atom.h>
 #include <WiFi.h>
 
 /**
