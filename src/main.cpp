@@ -128,6 +128,7 @@ void loop() {
     dice.clearState();
     if (dc.getData(cfg.url.c_str())) {
       //ok
+      Serial.printf("power=%d\n", dc.getPower());
       dice.showPower(dc.getPower());
       delay(1000);
     } else {

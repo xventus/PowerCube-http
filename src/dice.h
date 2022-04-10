@@ -57,7 +57,7 @@ public:
     void clearState() { _info = Info::none; }
     void showPower(int8_t value) { _power = value;}
     Info getState() const  { return _info; }
-    int8_t getEnergy() const  { return _power; }
+    int8_t getPower() const  { return _power; }
     void data(bool isok) { 
          if (isok) _gledsMatrix[0] = 0x008B00; 
           _gledsMatrix[0] = 0x8B3A3A; 
@@ -102,12 +102,12 @@ private:
 
             if (pdice->getState()==Info::none) {
                 FastLED.clear(true);
-                if (pdice->getEnergy() < 0) {
-                    pixels(abs(pdice->getEnergy()), 0xFF0000);  
-                } else if (pdice->getEnergy() > 0) {
-                    pixels(pdice->getEnergy(), 0x00FF00);  
+                if (pdice->getPower() < 0) {
+                    pixels(abs(pdice->getPower()), 0x00FF00);  
+                } else if (pdice->getPower() > 0) {
+                    pixels(pdice->getPower(), 0xFF0000);  
                 } else {
-                    pixels(pdice->getEnergy(), 0x0000FF);  
+                    pixels(pdice->getPower(), 0x0000FF);  
                 }
 
                  delay(_delay);
@@ -181,8 +181,8 @@ private:
 
         if (value > 8) {
             FastLED.showColor(colour, FastLED.getBrightness()); 
-        }  
-
-        FastLED.show();
+        }  else { 
+            FastLED.show();
+        }
     }
 };
