@@ -12,5 +12,7 @@ After pressing the display button, it switches to AP 'PowerCube' mode and the co
 note:
 Don't forget to upload from the `data` directory via 'Upload File System Image'
 
+![dice](dice.png)
+
 
 
